@@ -18,15 +18,15 @@ namespace LeedCode.Test.ArraysAndHashing
 
 
 
-            List<List<string>> expected1 = new() 
-            { 
+            List<List<string>> expected1 = new()
+            {
                 new() { "bat" },
                 new() { "nat", "tan" },
                 new() { "ate", "eat", "tea" }
             };
 
             List<List<string>> list1 = group.GroupAll(strs1);
-            
+
             list1.Should().BeEquivalentTo(expected1);
 
 
@@ -72,6 +72,18 @@ namespace LeedCode.Test.ArraysAndHashing
             List<List<string>> list5 = group.GroupAll(strs5);
 
             list5.Should().BeEquivalentTo(expected5);
+
+            string[] strs6 = { "ddddddddddg", "dgggggggggg" };
+
+            List<List<string>> expected6 = new()
+            {
+                new(){ "ddddddddddg" },
+                new(){ "dgggggggggg" }
+            };
+
+            List<List<string>> list6 = group.GroupAll(strs6);
+
+            list6.Should().BeEquivalentTo(expected6);
         }
     }
 }

@@ -57,7 +57,7 @@ namespace LeedCode.Test.ArraysAndHashing
 
                     if (actualString.ContainsKey(w2.Key))
                     {
-                        if (nextString[w2.Key] != w2.Value)
+                        if (nextString[w2.Key] != actualString[w2.Key])
                         {
                             return false;
                         }
