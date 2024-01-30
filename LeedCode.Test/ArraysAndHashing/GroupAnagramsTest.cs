@@ -14,19 +14,64 @@ namespace LeedCode.Test.ArraysAndHashing
         {
             GroupAnagrams group = new();
 
-            string[] strs = { "eat", "tea", "tan", "ate", "nat", "bat" };
+            string[] strs1 = { "eat", "tea", "tan", "ate", "nat", "bat" };
 
-            List<List<string>> expected = new() 
+
+
+            List<List<string>> expected1 = new() 
             { 
                 new() { "bat" },
                 new() { "nat", "tan" },
                 new() { "ate", "eat", "tea" }
             };
 
-            List<List<string>> list = group.GroupAll(strs);
+            List<List<string>> list1 = group.GroupAll(strs1);
             
-            list.Should().BeEquivalentTo(expected);
-             
+            list1.Should().BeEquivalentTo(expected1);
+
+
+            string[] strs2 = { "" };
+
+            List<List<string>> expected2 = new() { new() { "" } };
+
+            List<List<string>> list2 = group.GroupAll(strs2);
+
+            list2.Should().BeEquivalentTo(expected2);
+
+
+            string[] strs3 = { "a" };
+
+            List<List<string>> expected3 = new() { new() { "a" } };
+
+            List<List<string>> list3 = group.GroupAll(strs3);
+
+            list3.Should().BeEquivalentTo(expected3);
+
+
+            string[] strs4 = { "ape", "and", "cat" };
+
+            List<List<string>> expected4 = new()
+            {
+                new(){"ape"},
+                new(){"and"},
+                new(){"cat"}
+            };
+
+            List<List<string>> list4 = group.GroupAll(strs4);
+
+            list4.Should().BeEquivalentTo(expected4);
+
+            string[] strs5 = { "hhhhu", "tttti", "tttit", "hhhuh", "hhuhh", "tittt" };
+
+            List<List<string>> expected5 = new()
+            {
+                new(){ "tittt", "tttit", "tttti" },
+                new(){"hhhhu","hhhuh","hhuhh"}
+            };
+
+            List<List<string>> list5 = group.GroupAll(strs5);
+
+            list5.Should().BeEquivalentTo(expected5);
         }
     }
 }
