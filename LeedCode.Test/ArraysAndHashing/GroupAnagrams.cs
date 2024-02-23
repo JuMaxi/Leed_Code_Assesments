@@ -10,11 +10,37 @@ namespace LeedCode.Test.ArraysAndHashing
 {
     public class GroupAnagrams
     {
-        private char[] SortWord(char[] word, int leftIndex, int rightIndex)
+        private Dictionary<string, List<string>> SortArray(string[] strs)
+        {
+            Dictionary<string, List<string>> sortedWords = new();
+
+            foreach (string s in strs)
+            {
+                List<string> list = new();
+                string temp = "";
+
+                for(int i = 0; i < s.Length-1; i++)
+                {
+                    if (s[i] < s[i + 1])
+                    {
+                        temp += s[i];
+                    }
+                    else
+                    {
+                        temp += s[i + 1];
+                    }
+
+                }
+                
+                
+            }
+            return sortedWords;
+        }
         {
             int i = leftIndex;
             int j = rightIndex;
             char pivot = word[leftIndex];
+
 
             while( i <= j )
             {
