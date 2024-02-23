@@ -10,41 +10,15 @@ namespace LeedCode.Test.ArraysAndHashing
 {
     public class GroupAnagrams
     {
-        private Dictionary<string, List<string>> SortArray(string[] strs)
-        {
-            Dictionary<string, List<string>> sortedWords = new();
-
-            foreach (string s in strs)
-            {
-                List<string> list = new();
-                string temp = "";
-
-                for(int i = 0; i < s.Length-1; i++)
-                {
-                    if (s[i] < s[i + 1])
-                    {
-                        temp += s[i];
-                    }
-                    else
-                    {
-                        temp += s[i + 1];
-                    }
-
-                }
-                
-                
-            }
-            return sortedWords;
-        }
+        private char[] SortWord(char[] word, int leftIndex, int rightIndex)
         {
             int i = leftIndex;
             int j = rightIndex;
             char pivot = word[leftIndex];
 
-
-            while( i <= j )
+            while (i <= j)
             {
-                while (word[i] <  pivot)
+                while (word[i] < pivot)
                 {
                     i++;
                 }
@@ -54,7 +28,7 @@ namespace LeedCode.Test.ArraysAndHashing
                     j--;
                 }
 
-                if(i <= j )
+                if (i <= j)
                 {
                     char temp = word[i];
                     word[i] = word[j];
@@ -63,11 +37,11 @@ namespace LeedCode.Test.ArraysAndHashing
                     j--;
                 }
             }
-            if(leftIndex < j)
+            if (leftIndex < j)
             {
                 SortWord(word, leftIndex, j);
             }
-            if(rightIndex > i)
+            if (rightIndex > i)
             {
                 SortWord(word, i, rightIndex);
             }
@@ -93,11 +67,11 @@ namespace LeedCode.Test.ArraysAndHashing
         {
             Dictionary<string, List<string>> anagrams = new();
 
-            foreach(string str in strs)
+            foreach (string str in strs)
             {
                 string sortedWord = "";
 
-                if(str != "")
+                if (str != "")
                 {
                     int leftIndex = 0;
                     int rightIndex = str.Length - 1;

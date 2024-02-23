@@ -16,10 +16,6 @@ namespace LeedCode.Test.ArraysAndHashing
 
             string[] strs1 = { "eat", "tea", "tan", "ate", "nat", "bat" };
 
-            GroupAnagrams groupFeko1 = new();
-
-            string[] strs1Feko1 = { "cat", "act", "tac" };
-            var result = groupFeko1.GroupAll(strs1Feko1);
             List<List<string>> expected1 = new()
             {
                 new() { "bat" },
