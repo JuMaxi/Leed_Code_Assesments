@@ -10,113 +10,98 @@ namespace LeedCode.Test.ArraysAndHashing
 {
     public class GroupAnagrams
     {
-        public List<List<string>> GroupAll(string[] strs)
+        private char[] SortWord(char[] word, int leftIndex, int rightIndex)
         {
-            List<List<string>> anagrams = new();
+            int i = leftIndex;
+            int j = rightIndex;
+            char pivot = word[leftIndex];
 
-            Dictionary<int, Dictionary<char, int>> words = SumTotalDigitsForWord(strs);
-
-            for (int i = 0; i < words.Count; i++)
+            while( i <= j )
             {
-                List<string> list = new();
-
-                for (int ii = i + 1; ii < words.Count; ii++)
+                while (word[i] <  pivot)
                 {
-                    list = AddAnagramToList(list, i, ii, strs, words);
-
-                    if (list.Contains(strs[words.ElementAt(ii).Key]))
-                    {
-                        var delete = words.ElementAt(ii);
-                        words.Remove(delete.Key);
-                        ii--;
-                    }
+                    i++;
                 }
 
-                if (list.Count == 0)
+                while (word[j] > pivot)
                 {
-                    var insert = words.ElementAt(i);
-                    list.Add(strs[insert.Key]);
+                    j--;
                 }
-                anagrams.Add(list);
 
+                if(i <= j )
+                {
+                    char temp = word[i];
+                    word[i] = word[j];
+                    word[j] = temp;
+                    i++;
+                    j--;
+                }
             }
-            return anagrams;
+            if(leftIndex < j)
+            {
+                SortWord(word, leftIndex, j);
+            }
+            if(rightIndex > i)
+            {
+                SortWord(word, i, rightIndex);
+            }
+            return word;
         }
 
-        private bool VerifyIfItIsAnagram(int i, int ii, Dictionary<int, Dictionary<char, int>> words)
+
+        private Dictionary<string, List<string>> SaveSortedWordToDictionaryIfItIsNotAKey(string word, string sortedWord, Dictionary<string, List<string>> list)
         {
-            var actualString = words.ElementAt(i).Value;
-
-            var nextString = words.ElementAt(ii).Value;
-
-            if (actualString.Count == nextString.Count)
+            if (list.ContainsKey(sortedWord))
             {
-                for (int charActualString = 0; charActualString < actualString.Count; charActualString++)
-                {
-                    var w2 = nextString.ElementAt(charActualString);
-
-                    if (actualString.ContainsKey(w2.Key))
-                    {
-                        if (nextString[w2.Key] != actualString[w2.Key])
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
+                list[sortedWord].Add(word);
             }
             else
             {
-                return false;
+                List<string> l = new() { word };
+
+                list.Add(sortedWord, l);
             }
-            return true;
+            return list;
+        }
+        public List<List<string>> GroupAll(string[] strs)
+        {
+            Dictionary<string, List<string>> anagrams = new();
+
+            foreach(string str in strs)
+            {
+                string sortedWord = "";
+
+                if(str != "")
+                {
+                    int leftIndex = 0;
+                    int rightIndex = str.Length - 1;
+
+                    char[] w = SortWord(str.ToCharArray(), leftIndex, rightIndex);
+
+                    sortedWord = new string(w);
+                }
+
+                anagrams = SaveSortedWordToDictionaryIfItIsNotAKey(str, sortedWord, anagrams);
+            }
+
+            List<List<string>> list = SaveAnagramsToList(anagrams);
+
+            return list;
         }
 
-        private Dictionary<int, Dictionary<char, int>> SumTotalDigitsForWord(string[] strs)
+        private List<List<string>> SaveAnagramsToList(Dictionary<string, List<string>> anagrams)
         {
-            Dictionary<int, Dictionary<char, int>> words = new();
+            List<List<string>> list = new();
 
-            for (int i = 0; i < strs.Length; i++)
+            foreach (string key in anagrams.Keys)
             {
-                Dictionary<char, int> firstString = new();
+                List<string> l = new();
 
-                foreach (char c in strs[i])
+                foreach (string word in anagrams[key])
                 {
-                    if (firstString.ContainsKey(c))
-                    {
-                        firstString[c]++;
-                    }
-                    else
-                    {
-                        firstString.Add(c, 1);
-                    }
+                    l.Add(word);
                 }
-                words.Add(i, firstString);
-            }
-            return words;
-        }
-
-        private List<string> AddAnagramToList(List<string> list, int i, int ii, string[] strs, Dictionary<int, Dictionary<char, int>> words)
-        {
-            bool isAnagram = VerifyIfItIsAnagram(i, ii, words);
-
-            var actual = words.ElementAt(i);
-            var next = words.ElementAt(ii);
-
-            if (isAnagram)
-            {
-                if (!list.Contains(strs[actual.Key]))
-                {
-                    list.Add(strs[actual.Key]);
-                    list.Add(strs[next.Key]);
-                }
-                else
-                {
-                    list.Add(strs[next.Key]);
-                }
+                list.Add(l);
             }
             return list;
         }

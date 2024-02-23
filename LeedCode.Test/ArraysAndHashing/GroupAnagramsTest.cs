@@ -16,8 +16,6 @@ namespace LeedCode.Test.ArraysAndHashing
 
             string[] strs1 = { "eat", "tea", "tan", "ate", "nat", "bat" };
 
-
-
             List<List<string>> expected1 = new()
             {
                 new() { "bat" },

@@ -14,7 +14,7 @@ namespace LeedCode.Test.ArraysAndHashing
 
             int next = 0;
 
-            for(int i = 1; i < nums.Length; i++)
+            for (int i = 1; i < nums.Length; i++)
             {
                 if (nums[next] + nums[i] == target)
                 {
@@ -24,7 +24,7 @@ namespace LeedCode.Test.ArraysAndHashing
                 }
                 else
                 {
-                    if(i == nums.Length - 1)
+                    if (i == nums.Length - 1)
                     {
                         i = next + 1;
                         next++;
