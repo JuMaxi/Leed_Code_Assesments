@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace LeedCode.Test.Stack;
 
-public class CharStack
+public class ValidParenthesesStack
 {
     public int MaxSize {  get; set; }
     public char[] StackArray { get; set; }
     public int Top { get; set; }
 
-    public CharStack(int size)
+    public ValidParenthesesStack(int size)
     {
         this.MaxSize = size;
         this.StackArray = new char[size];
