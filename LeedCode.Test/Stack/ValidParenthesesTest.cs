@@ -11,9 +11,9 @@ namespace LeedCode.Test.Stack
         [Fact]
         public void Test01()
         {
-            ValidParentheses valid = new();
-
             string s = "()";
+
+            ValidParentheses valid = new();
 
             bool answer = valid.IsValid(s);
 
@@ -24,9 +24,9 @@ namespace LeedCode.Test.Stack
         [Fact]
         public void Test02()
         {
-            ValidParentheses valid = new();
-
             string s = "()[]{}";
+
+            ValidParentheses valid = new();
 
             bool answer = valid.IsValid(s);
 
@@ -36,9 +36,33 @@ namespace LeedCode.Test.Stack
         [Fact]
         public void Test03()
         {
+            string s = "(]";
+
             ValidParentheses valid = new();
 
-            string s = "(]";
+            bool answer = valid.IsValid(s);
+
+            Assert.False(answer);
+        }
+
+        [Fact]
+        public void Test04()
+        {
+            string s = "((";
+
+            ValidParentheses valid = new();
+
+            bool answer = valid.IsValid(s);
+
+            Assert.False(answer);
+        }
+
+        [Fact]
+        public void Test05()
+        {
+            string s = "){";
+
+            ValidParentheses valid = new();
 
             bool answer = valid.IsValid(s);
 
