@@ -8,12 +8,14 @@ namespace LeedCode.Test.Stack;
 
 public class CharStack
 {
+    public int MaxSize {  get; set; }
     public char[] StackArray { get; set; }
     public int Top { get; set; }
 
-    public CharStack()
+    public CharStack(int size)
     {
-        this.StackArray = new char[10000];
+        this.MaxSize = size;
+        this.StackArray = new char[size];
         this.Top = -1;
     }
 

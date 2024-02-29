@@ -10,7 +10,7 @@ public class ValidParentheses
         }
 
         string allParentheses = "(){}[]";
-        CharStack stack = new();
+        CharStack stack = new(s.Length);
 
         for (int i = 0; i < s.Length; i++)
         {
