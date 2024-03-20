@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace LeedCode.Test.Stack
 {
-    public class MinStackSolution
+    public class MinStackn
     {
         public string[] TakeValuesStack(int[] ints, string[] commands)
         {
-            MinStack stack = new();
+            Stack stack = new(ints.Length);
             string[] answer = new string[ints.Length]; 
 
 

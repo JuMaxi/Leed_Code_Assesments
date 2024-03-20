@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace LeedCode.Test.Stack;
 
-public class MinStack
+public class Stack
 {
     public int[] StackArray { get; set; }
     public int Top { get; set; }
+    public int MaxSize { get; set; }
 
-    public MinStack()
-    {
-        this.StackArray = new int[10];
+    public Stack(int size)
+    {   
+        this.MaxSize = size;
+        this.StackArray = new int[size];
         this.Top = -1;
     }
 
