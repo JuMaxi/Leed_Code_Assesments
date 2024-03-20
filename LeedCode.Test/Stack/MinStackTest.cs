@@ -7,7 +7,7 @@ namespace LeedCode.Test.Stack
         [Fact]
         public void Test01()
         {
-            MinStackn solution = new();
+            MinStack solution = new();
 
             string[] commands = { "MinStack", "push", "push", "push", "getMin", "pop", "top", "getMin" };
             int[] ints = { 0, -2, 0, -3, 0, 0, 0, 0 }; 

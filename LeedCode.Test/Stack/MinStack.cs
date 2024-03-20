@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LeedCode.Test.Stack
+﻿namespace LeedCode.Test.Stack
 {
-    public class MinStackn
+    public class MinStack
     {
         public string[] TakeValuesStack(int[] ints, string[] commands)
         {
