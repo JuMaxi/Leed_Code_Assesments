@@ -31,7 +31,8 @@ public class Stack
         Top--;
     }
 
-    public int GetTop()
+    //Get Top
+    public int Pick()
     {
         return StackArray[Top];
     }
