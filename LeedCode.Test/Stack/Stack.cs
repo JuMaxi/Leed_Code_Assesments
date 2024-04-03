@@ -32,7 +32,7 @@ public class Stack
     }
 
     //Get Top
-    public int Pick()
+    public int Peek()
     {
         return StackArray[Top];
     }

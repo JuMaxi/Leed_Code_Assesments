@@ -32,7 +32,7 @@
                         {
                             if (commands[i] == "top")
                             {
-                                answer[i] = stack.Pick().ToString();
+                                answer[i] = stack.Peek().ToString();
                             }
                         }
                     }
