@@ -35,10 +35,7 @@ public class RemoveOutermostParentheses
 
     private string SaveStringParentheses(string input, string answer, int firstIndex, int lastIndex)
     {
-        for(int i = firstIndex; i < lastIndex; i++)
-        {
-            answer += input[i];
-        }
+        answer += input.Substring(firstIndex, lastIndex - firstIndex);
 
         return answer;
     }
