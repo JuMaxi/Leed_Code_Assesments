@@ -37,14 +37,25 @@ namespace LeedCode.Test.LinkedList
 
         public void InsertLast(int data)
         {
-            Node current = First;
-            while(current.Next != null) 
-            { 
-                current = current.Next;
+            if(First is not null)
+            {
+                Node current = First;
+                while (current.Next != null)
+                {
+                    current = current.Next;
+                }
+
+                Node newNode = new();
+                newNode.Data = data;
+                current.Next = newNode;
             }
-            Node newNode = new();
-            newNode.Data = data;
-            current.Next = newNode;
+            else
+            {
+                Node newNode = new();
+                newNode.Data = data;
+                First = newNode;
+            }
+            
         }
     }
 }
