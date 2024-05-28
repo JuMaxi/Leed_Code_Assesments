@@ -1,38 +1,37 @@
-﻿namespace LeedCode.Test.LinkedList
+﻿namespace LeedCode.Test.LinkedList;
+
+public class Result
 {
-    public class Result
+    public int Sum { get; set; }
+    public int Position { get; set; }
+}
+public class ConvertBinaryNumberToInteger
+{
+    public int GetDecimalValue(Node head)
     {
-        public int Sum { get; set; }
-        public int Position { get; set; }
+        return Recurse(head).Sum;
     }
-    public class ConvertBinaryNumberToInteger
+
+    private Result Recurse(Node head)
     {
-        public int GetDecimalValue(Node head)
+        if (head.Next is null)
         {
-            return Recurse(head).Sum;
+            return new Result() { Position = 1, Sum = Power(0) * head.Data };
         }
-
-        private Result Recurse(Node head)
+        else
         {
-            if (head.Next is null)
+            var nextResult = Recurse(head.Next);
+            return new Result()
             {
-                return new Result() { Position = 1, Sum = Power(0) * head.Data };
-            }
-            else
-            {
-                var nextResult = Recurse(head.Next);
-                return new Result()
-                {
-                    Position = nextResult.Position + 1,
-                    Sum = nextResult.Sum + (Power(nextResult.Position) * head.Data)
-                };
-            }
+                Position = nextResult.Position + 1,
+                Sum = nextResult.Sum + (Power(nextResult.Position) * head.Data)
+            };
         }
+    }
 
-        private int Power(int factor)
-        {
-            
-            return (int)Math.Pow(2, factor);
-        }
+    private int Power(int factor)
+    {
+        
+        return (int)Math.Pow(2, factor);
     }
 }
