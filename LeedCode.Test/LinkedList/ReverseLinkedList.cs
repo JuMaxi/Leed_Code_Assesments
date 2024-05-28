@@ -1,21 +1,28 @@
-﻿namespace LeedCode.Test.LinkedList
-{
-    public class ReverseLinkedList
-    {
-        public Node? Node;
-        public Node ReverseList(Node head)
-        {
-            Node newNode = new();
-            newNode.Data = head.Data;
-            newNode.Next = Node;
-            Node = newNode;
+﻿namespace LeedCode.Test.LinkedList;
 
-            if (head.Next is not null)
+public class ReverseLinkedList
+{
+    public Node ReverseList(Node head)
+    {
+        if (head.Next == null)
+        {
+            return new Node { Data = head.Data };
+        }
+        else
+        {
+            var newNode = ReverseList(head.Next);
+
+            var current = newNode;
+
+            while(current.Next is not null)
             {
-                ReverseList(head.Next);
+                current = current.Next;
             }
 
-            return Node;
+            Node tempNode = new Node { Data = head.Data };
+            current.Next = tempNode;
+
+            return newNode;
         }
     }
 }
