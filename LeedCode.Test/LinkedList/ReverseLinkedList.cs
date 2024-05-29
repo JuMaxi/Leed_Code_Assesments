@@ -2,27 +2,34 @@
 
 public class ReverseLinkedList
 {
+    public class ReturnNode
+    {
+        public Node head { get; set; }
+        public Node current { get; set; }
+    }
     public Node ReverseList(Node head)
     {
-        if (head.Next == null)
+        return GetNodes(head).head;
+
+    }
+    private ReturnNode GetNodes(Node head)
+    {
+        if (head.Next is null)
         {
-            return new Node { Data = head.Data };
+            Node node = new() { Data = head.Data };
+
+            return new ReturnNode { head = node, current = node };
         }
         else
         {
-            var newNode = ReverseList(head.Next);
+            var result = GetNodes(head.Next);
 
-            var current = newNode;
+            Node tempNode = new() { Data = head.Data };
+            result.current.Next = tempNode;
+            result.current = tempNode;
 
-            while(current.Next is not null)
-            {
-                current = current.Next;
-            }
-
-            Node tempNode = new Node { Data = head.Data };
-            current.Next = tempNode;
-
-            return newNode;
+            return result;
         }
     }
+
 }
