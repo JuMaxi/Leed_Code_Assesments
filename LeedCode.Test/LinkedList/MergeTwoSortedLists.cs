@@ -1,81 +1,70 @@
-﻿using FluentAssertions.Equivalency;
-using System.ComponentModel.Design;
+﻿namespace LeedCode.Test.LinkedList;
 
-namespace LeedCode.Test.LinkedList
+public class MergeTwoSortedLists
 {
-    public class MergeTwoSortedLists
+    public Node MergeTwoLists(Node list1, Node list2)
     {
-        public Node? mergedList;
+        Node mergedList = new();
 
-        public Node MergeTwoLists(Node list1, Node list2)
+        //Save new sorted node while the two linked lists are not null
+        while (list1 is not null && list2 is not null)
         {
-            if (VerifyNextIsNotNullAndDataIsLessOrEqual(list1, list2))
+            if (list1.Data < list2.Data)
             {
-                mergedList = CallFunctions(list1, list2);
+                mergedList = CreateNewNode(list1, mergedList);
+                list1 = list1.Next;
             }
             else
             {
-                if (VerifyNextIsNotNullAndDataIsLessOrEqual(list2, list1))
+                if (list1.Data > list2.Data)
                 {
-                    mergedList = CallFunctions(list2, list1);
+                    mergedList = CreateNewNode(list2, mergedList);
+                    list2 = list2.Next;
+                }
+                else
+                {
+                    mergedList = CreateNewNode(list1, mergedList);
+                    mergedList = CreateNewNode(list2, mergedList);
+                    list1 = list1.Next;
+                    list2 = list2.Next;
                 }
             }
-
-            mergedList = SaveMergedListIfNextIsNull(list1, list2, mergedList);
-
-            return mergedList;
         }
 
-        private Node SaveMergedListIfNextIsNull(Node list1, Node list2, Node mergedList)
+        //Verify if some of the lists is not null, if so, create new nodes in the sorted/merged linked list.
+        mergedList = VerifyIfLinkedListIsNotNull(list1, mergedList);
+        mergedList = VerifyIfLinkedListIsNotNull(list2, mergedList);
+
+        return mergedList.Next;
+    }
+
+    private Node CreateNewNode(Node list, Node mergedList)
+    {
+        //Create new node as last
+        Node current = mergedList;
+
+        while(current.Next is not null)
         {
-            if (VerifyNextIsNullAndDataIsLessOrEqual(list1, list2))
+            current = current.Next;
+        }
+        
+        Node node = new() { Data = list.Data };
+        current.Next = node;
+
+        return mergedList;
+    }
+
+    private Node VerifyIfLinkedListIsNotNull(Node list, Node mergedList)
+    {
+        //If the linked is not null, should save the data in the merged linked list.
+        if(list is not null)
+        {
+            while(list is not null)
             {
-                mergedList = SaveMergedList(list1, mergedList);
+                mergedList = CreateNewNode(list, mergedList);
+                list = list.Next;
             }
-            if (VerifyNextIsNullAndDataIsLessOrEqual(list2, list1))
-            {
-                mergedList = SaveMergedList(list2, mergedList);
-            }
-
-            return mergedList;
         }
-        private bool VerifyNextIsNullAndDataIsLessOrEqual(Node list1, Node list2)
-        {
-            if (list1.Next is null && list1.Data <= list2.Data)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private Node SaveMergedList(Node list, Node MergedList)
-        {
-            Node newNode = new();
-            newNode.Data = list.Data;
-            newNode.Next = mergedList;
-            mergedList = newNode;
-
-            return mergedList;
-        }
-
-        private bool VerifyNextIsNotNullAndDataIsLessOrEqual(Node list1, Node list2)
-        {
-            if (list1.Next is not null && list1.Data <= list2.Data)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private Node CallFunctions(Node list1, Node list2)
-        {
-            MergeTwoLists(list1.Next, list2);
-            mergedList = SaveMergedList(list1, mergedList);
-
-            return mergedList;
-        }
-
-
-
+        return mergedList;
     }
 }
