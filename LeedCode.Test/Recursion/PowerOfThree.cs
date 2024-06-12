@@ -1,27 +1,28 @@
 ﻿namespace LeedCode.Test.Recursion;
 
-public class PowerOfTwo
+public class PowerOfThree
 {
-    public bool IsPowerOfTwo(int n)
+    public bool IsPowerOfThree(int n)
     {
         if (n <= 0)
         {
             return false;
         }
 
-        if (n == 1)
+        if(n == 1)
         {
             return true;
         }
         else
         {
-            bool answer = IsPowerOfTwo(n / 2);
+            bool answer = IsPowerOfThree(n / 3);
 
-            if(n % 2 != 0)
+            if(n % 3 != 0)
             {
                 return false;
             }
-            return answer;
+            return answer;  
         }
+
     }
 }

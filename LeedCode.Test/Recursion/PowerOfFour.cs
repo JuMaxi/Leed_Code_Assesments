@@ -4,7 +4,7 @@ public class PowerOfFour
 {
     public bool IsPowerOfFour(int n)
     {
-        if (n == 0)
+        if (n <= 0)
         {
             return false;
         }
