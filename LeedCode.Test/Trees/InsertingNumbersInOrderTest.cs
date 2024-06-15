@@ -31,5 +31,26 @@ namespace LeedCode.Test.Trees
 
 
         }
+
+        [Fact]
+        public void Test_NunberExists()
+        {
+            Node head = new();
+            head.Data = 3;
+
+            head.Add(5);
+            head.Add(8);
+            head.Add(7);
+            head.Add(6);
+            head.Add(1);
+            head.Add(2);
+            head.Add(-5);
+            head.Add(3);
+
+            head.Contains(10).Should().BeFalse();
+            head.Contains(5).Should().BeTrue();
+            head.Contains(2).Should().BeTrue();
+
+        }
     }
 }

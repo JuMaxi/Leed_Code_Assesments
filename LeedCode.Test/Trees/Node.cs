@@ -1,4 +1,6 @@
-﻿namespace LeedCode.Test.Trees
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace LeedCode.Test.Trees
 {
     public class Node
     {
@@ -20,7 +22,6 @@
                 {
                     Right.Add(number);
                 }
-                
             }
             else
             {
@@ -35,9 +36,34 @@
                     Left.Add(number);
                 }
             }
-           
-        
-        
+        }
+
+        public bool Contains(int number)
+        {
+            if(Data == number)
+            {
+                return true;
+            }
+            else
+            {
+                if(Data < number)
+                {
+                    if(Right == null)
+                    {
+                        return false;
+                    }
+                    return Right.Contains(number);
+                }
+                else
+                {
+                    if(Left == null)
+                    {
+                        return false;
+                    }
+                    return Left.Contains(number);
+                }
+                
+            }
         }
     }
 }
