@@ -83,5 +83,19 @@ namespace LeedCode.Test.Trees
 
             return sum;
         }
+
+        public int FindGreaterNumber()
+        {
+            if(Right != null)
+            {
+                int greater = Right.FindGreaterNumber();
+
+                return Math.Max(greater, Data);
+            }
+            else
+            {
+                return Data;
+            }
+        }
     }
 }

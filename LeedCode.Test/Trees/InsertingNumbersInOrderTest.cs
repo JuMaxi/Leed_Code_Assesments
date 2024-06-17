@@ -75,6 +75,27 @@ namespace LeedCode.Test.Trees
 
             sum.Should().Be(21);
         }
+
+        [Fact]
+        public void Test_SumTree2()
+        {
+            Node head = new();
+            head.Data = 3;
+
+            head.Add(5);
+            head.Add(8);
+            head.Add(7);
+            head.Add(6);
+            head.Add(1);
+            head.Add(2);
+            head.Add(-5);
+            head.Add(3);
+
+            int sum = head.Sum();
+
+            sum.Should().Be(30);
+        }
+
         [Fact]
         public void Test_SumTreeLeft()
         {
@@ -85,6 +106,22 @@ namespace LeedCode.Test.Trees
 
             int sum = head.Sum();
             sum.Should().Be(6);
+        }
+
+        [Fact]
+        public void Test_Greater_Number()
+        {
+            Node head = new();
+            head.Data = 3;
+            head.Add(5);
+            head.Add(8);
+            head.Add(4);
+            head.Add(1);
+            head.Add(9);
+
+            int greater = head.FindGreaterNumber();
+
+            greater.Should().Be(9);
         }
     }
 }
