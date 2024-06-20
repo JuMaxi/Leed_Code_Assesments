@@ -97,5 +97,26 @@ namespace LeedCode.Test.Trees
                 return Data;
             }
         }
+
+        public int FindGreaterDepth()
+        {
+            int depth = 0;
+            int end;
+
+            if (Right != null)
+            {
+                depth = 1 + Right.FindGreaterDepth();
+
+            }
+
+            end = depth;
+
+            if (Left != null)
+            {
+                depth = 1 + Left.FindGreaterDepth();
+            }
+
+            return Math.Max(depth, end);
+        }
     }
 }

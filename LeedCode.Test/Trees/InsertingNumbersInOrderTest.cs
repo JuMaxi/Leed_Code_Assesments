@@ -123,5 +123,67 @@ namespace LeedCode.Test.Trees
 
             greater.Should().Be(9);
         }
+
+        [Fact]
+        public void Test_Depth1()
+        {
+            Node head = new();
+            head.Data = 3;
+            head.Add(5);
+            head.Add(8);
+            head.Add(4);
+            head.Add(1);
+
+            int depth = head.FindGreaterDepth();
+
+            depth.Should().Be(2);
+
+        }
+
+        [Fact]
+        public void Test_Depth2()
+        {
+            Node head = new();
+            head.Data = 3;
+            head.Add(5);
+            head.Add(8);
+            head.Add(7);
+            head.Add(6);
+            head.Add(1);
+            head.Add(2);
+            head.Add(3);
+            head.Add(-5);
+
+            int deep = head.FindGreaterDepth();
+
+            deep.Should().Be(4);
+
+        }
+
+        [Fact]
+        public void Test_Depth3()
+        {
+            Node head = new();
+            head.Data = 3;
+            head.Add(5);
+            head.Add(8);
+            head.Add(13);
+            head.Add(15);
+            head.Add(9);
+            head.Add(11);
+            head.Add(7);
+            head.Add(6);
+            head.Add(5);
+            head.Add(1);
+            head.Add(2);
+            head.Add(3);
+            head.Add(-5);
+            head.Add(0);
+
+            int deep = head.FindGreaterDepth();
+
+            deep.Should().Be(5);
+
+        }
     }
 }
