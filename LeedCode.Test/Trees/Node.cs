@@ -3,6 +3,12 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace LeedCode.Test.Trees
 {
+    public class BalanceTree
+    {
+        public bool IsBalance { get; set; }
+        public int Right { get; set; }
+        public int Left { get; set; }
+    }
     public class Node
     {
         public int Data { get; set; }
@@ -86,7 +92,7 @@ namespace LeedCode.Test.Trees
 
         public int FindGreaterNumber()
         {
-            if(Right != null)
+            if (Right != null)
             {
                 int greater = Right.FindGreaterNumber();
 
@@ -100,23 +106,55 @@ namespace LeedCode.Test.Trees
 
         public int FindGreaterDepth()
         {
-            int depth = 0;
-            int end;
+            int right = 0;
+            int left = 0;
 
             if (Right != null)
             {
-                depth = 1 + Right.FindGreaterDepth();
+                right = 1 + Right.FindGreaterDepth();
 
             }
-
-            end = depth;
 
             if (Left != null)
             {
-                depth = 1 + Left.FindGreaterDepth();
+                left = 1 + Left.FindGreaterDepth();
             }
 
-            return Math.Max(depth, end);
+            return Math.Max(right, left);
         }
+
+        public BalanceTree FindIfTreeIsBalanced()
+        {
+            BalanceTree balance = new();
+            balance.IsBalance = true;
+
+            if (Right != null)
+            {
+                var resultRight = Right.FindIfTreeIsBalanced();
+
+                balance.Right = resultRight.Right + 1;
+                balance.IsBalance = resultRight.IsBalance;
+
+                if (balance.IsBalance == false)
+                {
+                    return balance;
+                }
+            }
+
+            if (Left != null)
+            {
+                var resultLeft = Left.FindIfTreeIsBalanced();
+                balance.Left = resultLeft.Left + 1;
+            }
+
+            if (balance.Left - balance.Right > 1)
+            {
+                balance.IsBalance = false;
+            }
+
+            return balance;
+        }
+
+
     }
 }

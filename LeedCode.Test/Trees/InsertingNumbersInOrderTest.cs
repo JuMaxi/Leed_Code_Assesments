@@ -185,5 +185,66 @@ namespace LeedCode.Test.Trees
             deep.Should().Be(5);
 
         }
+
+        [Fact]
+        public void Test_Balance1()
+        {
+            Node head = new();
+            head.Data = 3;
+            head.Add(5);
+            head.Add(8);
+            head.Add(4);
+            head.Add(1);
+
+            BalanceTree balance = head.FindIfTreeIsBalanced();
+
+            balance.IsBalance.Should().BeTrue();
+
+        }
+
+        [Fact]
+        public void Test_Balance2()
+        {
+            Node head = new();
+            head.Data = 3;
+            head.Add(5);
+            head.Add(8);
+            head.Add(7);
+            head.Add(6);
+            head.Add(1);
+            head.Add(2);
+            head.Add(3);
+            head.Add(-5);
+
+            BalanceTree balance = head.FindIfTreeIsBalanced();
+
+            balance.IsBalance.Should().BeFalse();
+
+        }
+
+        [Fact]
+        public void Test_Balance3()
+        {
+            Node head = new();
+            head.Data = 3;
+            head.Add(5);
+            head.Add(8);
+            head.Add(13);
+            head.Add(15);
+            head.Add(9);
+            head.Add(11);
+            head.Add(7);
+            head.Add(6);
+            head.Add(5);
+            head.Add(1);
+            head.Add(2);
+            head.Add(3);
+            head.Add(-5);
+            head.Add(0);
+
+            BalanceTree balance = head.FindIfTreeIsBalanced();
+
+            balance.IsBalance.Should().BeTrue();
+        }
     }
 }
