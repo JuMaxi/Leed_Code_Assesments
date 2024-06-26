@@ -244,7 +244,26 @@ namespace LeedCode.Test.Trees
 
             BalanceTree balance = head.FindIfTreeIsBalanced();
 
-            balance.IsBalance.Should().BeTrue();
+            balance.IsBalance.Should().BeFalse();
+        }
+
+        [Fact] 
+        public void Test_Balance4()
+        {
+            Node head = new();
+            head.Data = 4;
+            head.Add(1);
+            head.Add(-5);
+            head.Add(2);
+            head.Add(3);
+            head.Add(4);
+            head.Add(5);
+            head.Add(8);
+            head.Add(7);
+
+            BalanceTree balance = head.FindIfTreeIsBalanced();
+
+            balance.IsBalance.Should().BeFalse();
         }
     }
 }

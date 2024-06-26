@@ -131,23 +131,23 @@ namespace LeedCode.Test.Trees
             if (Right != null)
             {
                 var resultRight = Right.FindIfTreeIsBalanced();
-
                 balance.Right = resultRight.Right + 1;
                 balance.IsBalance = resultRight.IsBalance;
+            }
 
-                if (balance.IsBalance == false)
-                {
-                    return balance;
-                }
+            if (balance.IsBalance == false)
+            {
+                return balance;
             }
 
             if (Left != null)
             {
                 var resultLeft = Left.FindIfTreeIsBalanced();
                 balance.Left = resultLeft.Left + 1;
+                balance.IsBalance = resultLeft.IsBalance;
             }
 
-            if (balance.Left - balance.Right > 1)
+            if (Math.Abs(balance.Right - balance.Left) > 1)
             {
                 balance.IsBalance = false;
             }
