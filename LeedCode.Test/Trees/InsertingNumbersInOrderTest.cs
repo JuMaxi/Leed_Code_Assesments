@@ -19,8 +19,8 @@ namespace LeedCode.Test.Trees
             head.Add(-5);
             head.Add(3);
 
-            head.Right.Data.Should().Be(5); 
-            head.Right.Right.Data.Should().Be(8); 
+            head.Right.Data.Should().Be(5);
+            head.Right.Right.Data.Should().Be(8);
             head.Right.Right.Left.Data.Should().Be(7);
             head.Right.Right.Left.Left.Data.Should().Be(6);
 
@@ -247,7 +247,7 @@ namespace LeedCode.Test.Trees
             balance.IsBalance.Should().BeFalse();
         }
 
-        [Fact] 
+        [Fact]
         public void Test_Balance4()
         {
             Node head = new();
@@ -264,6 +264,83 @@ namespace LeedCode.Test.Trees
             BalanceTree balance = head.FindIfTreeIsBalanced();
 
             balance.IsBalance.Should().BeFalse();
+        }
+
+        [Fact]
+        public void Test_NumberItems1()
+        {
+            Node head = new();
+            head.Data = 3;
+            head.Add(5);
+            head.Add(8);
+            head.Add(4);
+            head.Add(1);
+
+            int count = head.CountNumberItems();
+            count.Should().Be(5);
+        }
+
+
+        [Fact]
+        public void Test_NumberItems2()
+        {
+            Node head = new();
+            head.Data = 3;
+            head.Add(5);
+            head.Add(8);
+            head.Add(7);
+            head.Add(6);
+            head.Add(1);
+            head.Add(2);
+            head.Add(3);
+            head.Add(-5);
+
+            int count = head.CountNumberItems();
+            count.Should().Be(9);
+        }
+
+        [Fact]
+        public void Test_NumberItems3()
+        {
+            Node head = new();
+            head.Data = 3;
+            head.Add(5);
+            head.Add(8);
+            head.Add(13);
+            head.Add(15);
+            head.Add(9);
+            head.Add(11);
+            head.Add(7);
+            head.Add(6);
+            head.Add(5);
+            head.Add(1);
+            head.Add(2);
+            head.Add(3);
+            head.Add(-5);
+            head.Add(0);
+
+            int count = head.CountNumberItems();
+
+            count.Should().Be(15);
+        }
+
+        [Fact]
+        public void Test_NumberItems4()
+        {
+            Node head = new();
+            head.Data = 4;
+            head.Add(1);
+            head.Add(-5);
+            head.Add(2);
+            head.Add(3);
+            head.Add(4);
+            head.Add(5);
+            head.Add(8);
+            head.Add(7);
+
+            int count = head.CountNumberItems();
+
+            count.Should().Be(9);
         }
     }
 }

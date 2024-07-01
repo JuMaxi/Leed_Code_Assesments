@@ -155,6 +155,22 @@ namespace LeedCode.Test.Trees
             return balance;
         }
 
+        public int CountNumberItems()
+        {
+            int count = 1;
+
+            if(Right != null)
+            {
+                count += Right.CountNumberItems();
+            }
+
+            if(Left != null)
+            {
+                count += Left.CountNumberItems();
+            }
+
+            return count;
+        }
 
     }
 }
