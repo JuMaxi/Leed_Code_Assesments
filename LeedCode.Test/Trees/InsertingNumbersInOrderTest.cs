@@ -342,5 +342,146 @@ namespace LeedCode.Test.Trees
 
             count.Should().Be(9);
         }
+
+        [Fact]
+        public void Test_IsABinaryTree1()
+        {
+            Node head = new();
+            head.Data = 3;
+            head.Add(5);
+            head.Add(8);
+            head.Add(4);
+            head.Add(1);
+
+            BinarySearchTree binary = head.VerifyIfItIsABinarySearchTree();
+            binary.IsBinary.Should().BeTrue();
+        }
+
+        [Fact]
+        public void Test_IsABinaryTree2()
+        {
+            Node head = new();
+            head.Data = 3;
+            head.Add(5);
+            head.Add(8);
+            head.Add(7);
+            head.Add(6);
+            head.Add(1);
+            head.Add(2);
+            head.Add(3);
+            head.Add(-5);
+
+            BinarySearchTree binary = head.VerifyIfItIsABinarySearchTree();
+            binary.IsBinary.Should().BeTrue();
+        }
+
+        [Fact]
+        public void Test_IsABinaryTree3()
+        {
+            Node head = new();
+            head.Data = 3;
+            head.Add(5);
+            head.Add(8);
+            head.Add(13);
+            head.Add(15);
+            head.Add(9);
+            head.Add(11);
+            head.Add(7);
+            head.Add(6);
+            head.Add(5);
+            head.Add(1);
+            head.Add(2);
+            head.Add(3);
+            head.Add(-5);
+            head.Add(0);
+
+            BinarySearchTree binary = head.VerifyIfItIsABinarySearchTree();
+            binary.IsBinary.Should().BeTrue();
+        }
+
+        [Fact]
+        public void Test_IsABinaryTree4()
+        {
+            Node head = new();
+            head.Data = 4;
+            head.Add(1);
+            head.Add(-5);
+            head.Add(2);
+            head.Add(3);
+            head.Add(4);
+            head.Add(5);
+            head.Add(8);
+            head.Add(7);
+
+            BinarySearchTree binary = head.VerifyIfItIsABinarySearchTree();
+            binary.IsBinary.Should().BeTrue();
+        }
+
+        [Fact]
+        public void Test_IsABinaryTree5()
+        {
+            Node head = new();
+            head.Data = 3;
+
+            Node right = new();
+            right.Data = 1;
+            head.Right = right; 
+
+            Node left = new();
+            left.Data = 2;
+            head.Left = left;
+
+            BinarySearchTree binary = head.VerifyIfItIsABinarySearchTree();
+            binary.IsBinary.Should().BeFalse();
+        }
+
+        [Fact]
+        public void Test_IsABinaryTree6()
+        {
+            Node head = new();
+            head.Data = 3;
+
+            Node right = new();
+            right.Data = 5;
+            head.Right = right;
+
+            Node right2 = new();
+            right2.Data = 8;
+            right.Right = right2;
+
+            Node right3 = new();
+            right3.Data = 1;
+            right2.Right = right3;
+
+            BinarySearchTree binary = head.VerifyIfItIsABinarySearchTree();
+            binary.IsBinary.Should().BeFalse();
+        }
+
+
+        [Fact]
+        public void Test_IsABinaryTree7()
+        {
+            Node head = new();
+            head.Data = 3;
+
+            Node right = new();
+            right.Data = 5;
+            head.Right = right;
+
+            Node right2 = new();
+            right2.Data = 8;
+            right.Right = right2;
+
+            Node left = new();
+            left.Data = 1;
+            head.Left = left;
+
+            Node left2 = new();
+            left2.Data = 6;
+            left.Left = left2;
+
+            BinarySearchTree binary = head.VerifyIfItIsABinarySearchTree();
+            binary.IsBinary.Should().BeFalse();
+        }
     }
 }

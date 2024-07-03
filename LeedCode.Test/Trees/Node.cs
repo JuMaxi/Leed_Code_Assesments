@@ -9,6 +9,11 @@ namespace LeedCode.Test.Trees
         public int Right { get; set; }
         public int Left { get; set; }
     }
+    public class BinarySearchTree
+    {
+        public bool IsBinary {  get; set; }
+        public int Data { get; set; }
+    }
     public class Node
     {
         public int Data { get; set; }
@@ -159,17 +164,48 @@ namespace LeedCode.Test.Trees
         {
             int count = 1;
 
-            if(Right != null)
+            if (Right != null)
             {
                 count += Right.CountNumberItems();
             }
 
-            if(Left != null)
+            if (Left != null)
             {
                 count += Left.CountNumberItems();
             }
 
             return count;
+        }
+
+        public BinarySearchTree VerifyIfItIsABinarySearchTree()
+        {
+            BinarySearchTree binary = new();
+            binary.Data = Data;
+            binary.IsBinary = true;
+
+            if (Right != null)
+            {
+                binary = Right.VerifyIfItIsABinarySearchTree();
+
+                if(binary.Data < Data)
+                {
+                    binary.IsBinary = false;
+                    return binary;
+                }
+
+            }
+
+            if (Left != null)
+            {
+                binary = Left.VerifyIfItIsABinarySearchTree();
+
+                if(binary.Data > Data)
+                {
+                    binary.IsBinary = false;
+                    return binary;
+                }
+            }
+            return binary;
         }
 
     }
