@@ -2,7 +2,7 @@
 
 namespace LeedCode.Test.Trees
 {
-    public class InsertingNumbersInOrderTest
+    public class NodeTest
     {
         [Fact]
         public void Test01()
